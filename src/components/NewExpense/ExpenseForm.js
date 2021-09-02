@@ -14,7 +14,6 @@ const ExpenseForm = (props) => {
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
-
     // spread operator to take the key-value pairs from userInput
     // followed by overwriting enteredTitle with the new value from the event registered by the input field
     // note: this state update depends upon the previous state
@@ -30,16 +29,14 @@ const ExpenseForm = (props) => {
 
   const amountChangeHandler = (event) => {
     setEnteredAmount(event.target.value);
-
     // setUserInput({
     //   ...userInput,
     //   enteredAmount: event.target.value,
     // });
   };
 
-  const dateChangedHandler = (event) => {
+  const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
-
     // setUserInput({
     //   ...userInput,
     //   enteredDate: event.target.value,
@@ -61,6 +58,7 @@ const ExpenseForm = (props) => {
     setEnteredDate("");
   };
 
+  // make this conditional to a click on a button 'Add New Expense'
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
@@ -89,11 +87,14 @@ const ExpenseForm = (props) => {
             min="2019-01-01"
             max="2022-12-31"
             value={enteredDate}
-            onChange={dateChangedHandler}
+            onChange={dateChangeHandler}
           />
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={props.onCancel}>
+          Cancel
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
